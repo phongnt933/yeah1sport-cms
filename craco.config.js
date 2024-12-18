@@ -9,7 +9,7 @@ module.exports = {
       };
       return webpackConfig;
     },
-    plugins: [new Dotenv()],
+    // plugins: [new Dotenv()],
   },
   style: {
     postcss: {

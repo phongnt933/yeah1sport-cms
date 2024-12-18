@@ -69,7 +69,8 @@ function FieldPage() {
       title: "Index",
       dataIndex: "index",
       key: "index",
-      render: (index) => (currentPage - 1) * PAGE_SIZE + index + 1,
+      render: (value, record, index) =>
+        (currentPage - 1) * PAGE_SIZE + index + 1,
     },
     {
       title: "Tên sân",
