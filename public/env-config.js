@@ -1,1 +1,0 @@
-window._env_ = {"PORT":"4000","API_URL":"https://housesport-server.vercel.app/api","LOGIN_PATH":"https://house-sport.vercel.app/#/sign-in"}
