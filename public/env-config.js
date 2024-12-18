@@ -1,0 +1,1 @@
+window._env_ = {"PORT":"4000","API_URL":"http://localhost:3000/api","LOGIN_PATH":"http://localhost:4001/#/sign-in"}
