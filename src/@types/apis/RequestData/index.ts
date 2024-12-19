@@ -45,12 +45,6 @@ export interface RDCreateField extends RDCommon {
   body: IFieldForm;
 }
 
-export interface RDDeleteField extends RDCommon {
-  param: {
-    fieldId: string;
-  };
-}
-
 export interface RDGetAllBooking extends RDCommon {
   query?: {
     p?: number;

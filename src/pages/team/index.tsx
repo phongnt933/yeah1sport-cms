@@ -36,29 +36,29 @@ function TeamPage() {
       render: (value, record, index) =>
         (currentPage - 1) * PAGE_SIZE + index + 1,
     },
+    // {
+    //   title: "Tên đội",
+    //   dataIndex: "name",
+    //   key: "name",
+    //   render: (name) => name,
+    // },
     {
-      title: "Tên sân",
-      dataIndex: "name",
-      key: "name",
-      render: (name) => name,
+      title: "Đội trưởng",
+      dataIndex: "captain",
+      key: "captain",
+      render: (captain) => captain.name,
     },
     {
       title: "Môn thể thao",
-      dataIndex: "sport",
-      key: "sport",
-      render: (sport) => sport,
+      dataIndex: "type",
+      key: "type",
+      render: (type) => type,
     },
     {
       title: "Số lượng",
       dataIndex: "members",
       key: "members",
-      render: (members) => members.length,
-    },
-    {
-      title: "Mô tả",
-      dataIndex: "description",
-      key: "description",
-      render: (description) => description,
+      render: (members) => members.length + 1,
     },
     {
       title: "Mô tả",

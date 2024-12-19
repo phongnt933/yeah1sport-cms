@@ -7,7 +7,6 @@ import {
 } from "../@types/apis";
 import {
   RDCreateField,
-  RDDeleteField,
   RDGetAllField,
 } from "../@types/apis/RequestData";
 import { IField } from "../@types/entities/Field";
@@ -71,39 +70,6 @@ export const createField = async ({
       body,
     },
     method: "POST",
-    successHandler,
-    errorHandler,
-  });
-
-  return result;
-};
-
-export const deleteField = async ({
-  name = "deleteField",
-  param,
-  successHandler,
-  errorHandler,
-}: {
-  name?: string;
-  param: RDDeleteField["param"];
-  successHandler?: TApiProps<
-    RDDeleteField,
-    TResponseDataObj<any>,
-    any
-  >["successHandler"];
-  errorHandler?: TApiProps<
-    RDDeleteField,
-    TResponseDataObj<any>,
-    TResponseErrorCommon<undefined>
-  >["errorHandler"];
-}) => {
-  const result = await callApi<RDDeleteField, TResponseDataObj<any>>({
-    name,
-    path: END_POINT.DELETE_FIELD,
-    data: {
-      param,
-    },
-    method: "DELETE",
     successHandler,
     errorHandler,
   });
