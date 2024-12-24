@@ -1,12 +1,23 @@
-import { Button, Form, FormProps, Input, Modal, Select } from "antd";
+import {
+  Button,
+  Form,
+  FormProps,
+  Input,
+  InputNumber,
+  Modal,
+  Select,
+} from "antd";
 import React from "react";
 import { ROLE } from "../../constants/role";
 import { createCMSUser } from "../../apis/user";
 import { toast } from "react-toastify";
+import { useForm } from "antd/es/form/Form";
+import { omitIsNil } from "../../utils/omit";
 
 type FieldType = {
   email: string;
   password: string;
+  price: number;
   name: string;
   confirmPassword?: string;
   phone: string;
@@ -22,15 +33,22 @@ interface ICreateAccountProps {
 function CreateAccount(props: ICreateAccountProps) {
   const { open, onClose, reload } = props;
 
+  const [form] = Form.useForm();
+  const roleWatch = Form.useWatch("role", form);
+
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     await createCMSUser({
-      body: {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-        phone: values.phone,
-        role: values.role,
-      },
+      body: omitIsNil(
+        {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+          price: values.price,
+          phone: values.phone,
+          role: values.role,
+        },
+        { deep: true }
+      ),
       successHandler: {
         callBack() {
           toast.success("Tạo tài khoản thành công");
@@ -57,6 +75,7 @@ function CreateAccount(props: ICreateAccountProps) {
     >
       <Form
         layout="vertical"
+        form={form}
         labelCol={{ offset: 8 }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -88,6 +107,7 @@ function CreateAccount(props: ICreateAccountProps) {
         >
           <Input placeholder="Nhập số điện thoại" />
         </Form.Item>
+
         <Form.Item<FieldType>
           label="Quyền"
           name="role"
@@ -102,6 +122,21 @@ function CreateAccount(props: ICreateAccountProps) {
             ))}
           </Select>
         </Form.Item>
+
+        {roleWatch === ROLE.REFEREE && (
+          <Form.Item<FieldType>
+            label="Giá tiền"
+            name="price"
+            style={{ marginBottom: 8 }}
+            rules={[{ required: true, message: "Vui lòng nhập giá tiền" }]}
+          >
+            <InputNumber
+              style={{ width: "100%" }}
+              placeholder="Nhập giá tiền"
+            />
+          </Form.Item>
+        )}
+
         <Form.Item<FieldType>
           label="Mật khẩu"
           name="password"
